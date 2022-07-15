@@ -1,6 +1,8 @@
 package rifqimuhammadaziz.Library.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 import rifqimuhammadaziz.Library.dto.AdminDto;
 import rifqimuhammadaziz.Library.model.Admin;
 import rifqimuhammadaziz.Library.repository.AdminRepository;
@@ -9,6 +11,7 @@ import rifqimuhammadaziz.Library.service.contract.AdminService;
 
 import java.util.Arrays;
 
+@Service
 public class AdminServiceImpl implements AdminService {
 
     @Autowired
