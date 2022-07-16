@@ -9,12 +9,4 @@ import rifqimuhammadaziz.Library.service.contract.CategoryService;
 @Controller
 public class AdminController {
 
-    @Autowired
-    private CategoryService categoryService;
-
-    @GetMapping("/categories")
-    private String categories(Model model) {
-        model.addAttribute("title", "Category");
-        return "categories";
-    }
 }
