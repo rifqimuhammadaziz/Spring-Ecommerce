@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
@@ -33,28 +33,58 @@
 
 	<!-- Add New Category Modal-->
 	<div th:fragment="addNewCategory" class="modal fade" id="addNewCategoryModal" tabindex="-1" aria-labelledby="addNewCategoryModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="addNewCategoryModalLabel">Add New Category</h5>
-					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form>
+		<form th:action="@{/add-category}" method="POST" th:object="${newCategory}">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="addNewCategoryModalLabel">Add New Category</h5>
+						<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">
 						<div class="mb-3">
-							<label for="recipient-name" class="col-form-label">Category Name</label>
-							<input type="text" class="form-control" id="recipient-name">
+							<label for="name" class="col-form-label">Category Name</label>
+							<input th:field="*{name}" type="text" class="form-control" id="name" name="name">
 						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Add</button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Add</button>
+					</div>
 				</div>
 			</div>
-		</div>
+		</form>
+	</div>
+
+	<!-- Edit Category Modal-->
+	<div th:fragment="editCategory" class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+		<form th:action="@{/update-category}" method="PUT">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+						<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="mb-3">
+							<label for="categoryId" class="col-form-label">Category ID</label>
+							<input type="text" class="form-control" id="categoryId" name="id" readonly>
+						</div>
+						<div class="mb-3">
+							<label for="categoryName" class="col-form-label">Category Name</label>
+							<input type="text" class="form-control" id="categoryName" name="name">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Update</button>
+					</div>
+				</div>
+			</div>
+		</form>
 	</div>
 
 	<!-- Footer -->

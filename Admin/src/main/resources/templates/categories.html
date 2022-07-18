@@ -31,6 +31,14 @@
                         <p>No category found.</p>
                     </div>
                     <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewCategoryModal">Add New Category</a>
+
+                    <div th:if="${success}" class="alert alert-success text-center">
+                        <p th:text="${success}"></p>
+                    </div>
+                    <div th:if="${failed}" class="alert alert-danger text-center">
+                        <p th:text="${failed}"></p>
+                    </div>
+
                     <table th:if="${size > 0}" class="table table-striped">
                         <thead>
                         <tr>
@@ -40,10 +48,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td scope="row">1</td>
-                            <td>Rifqi</td>
-                            <td>Muhammad Aziz</td>
+                        <tr th:each="category : ${categories}">
+                            <td scope="row" th:text="${category.id}"></td>
+                            <td th:text="${category.name}"></td>
+                            <td>
+                                <a id="editButton" th:href="@{/findById/(id = ${category.id})}" class="btn btn-primary">Edit</a>
+                                <a id="deleteButton" th:if="${category.is_activated} == true" th:href="@{/delete-category/(id = ${category.id})}" class="btn btn-danger">Delete</a>
+                                <a id="enableButton" th:if="${category.is_activated} == false" th:href="@{/enable-category/(id = ${category.id})}" class="btn btn-success">Enable</a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -73,7 +85,9 @@
 
     <!-- Add New Category Modal-->
     <div th:replace="component::addNewCategory"></div>
+    <div th:replace="component::editCategory"></div>
 
     <div th:replace="fragments::scripts"></div>
+    <script th:src="@{/js/categories.js}"></script>
 </body>
 </html>
