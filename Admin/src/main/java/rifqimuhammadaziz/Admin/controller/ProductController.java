@@ -93,7 +93,7 @@ public class ProductController {
             attributes.addFlashAttribute("error", "Failed to add product");
 
         }
-        return "redirect:/products";
+        return "redirect:/products/0";
     }
 
     @GetMapping("/update-product/{id}")
