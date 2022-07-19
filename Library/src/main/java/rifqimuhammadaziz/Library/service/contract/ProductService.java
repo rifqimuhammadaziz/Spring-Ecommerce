@@ -15,6 +15,6 @@ public interface ProductService {
     void enableById(Long id);
     ProductDto findById(Long id);
 
-    Page<Product> pageProducts(int pageNo);
-    Page<Product> searchProducts(int pageNo, String keyword);
+    Page<ProductDto> pageProducts(int pageNo);
+    Page<ProductDto> searchProducts(int pageNo, String keyword);
 }
