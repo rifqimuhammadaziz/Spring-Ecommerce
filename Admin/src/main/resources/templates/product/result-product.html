@@ -26,13 +26,6 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <div>
-                        <form th:action="@{/search-result/0}" method="GET">
-                            <input type="text" name="keyword" id="search" placeholder="Search Product">
-                            <button type="submit" class="btn btn-primary">Search</button>
-                        </form>
-                    </div>
-
                     <div th:if="${size == 0}">
                         <p>No product found.</p>
                     </div>
@@ -43,6 +36,7 @@
                     <div th:if="${error}" class="alert alert-danger text-center">
                         <p th:text="${error}"></p>
                     </div>
+
                     <a class="btn btn-primary" th:href="@{/add-product}">Add New Product</a>
 
                     <!-- Begin Table Content -->
@@ -68,8 +62,8 @@
                             </td>
                             <td>
                                 <a th:href="@{/update-product/{id} (id = ${product.id})}" class="btn btn-primary">Edit</a>
-                                <a th:if="${product.is_activated} == true" th:href="@{/delete-product/{id} (id = ${product.id})}" class="btn btn-danger">Delete</a>
-                                <a th:if="${product.is_activated} == false" th:href="@{/enable-product/{id} (id = ${product.id})}" class="btn btn-success">Enable</a>
+                                <a th:if="${product.isActivated} == true" th:href="@{/delete-product/{id} (id = ${product.id})}" class="btn btn-danger">Delete</a>
+                                <a th:if="${product.isActivated} == false" th:href="@{/enable-product/{id} (id = ${product.id})}" class="btn btn-success">Enable</a>
                             </td>
                         </tr>
                         </tbody>

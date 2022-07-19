@@ -1,5 +1,6 @@
 package rifqimuhammadaziz.Library.service.contract;
 
+import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
 import rifqimuhammadaziz.Library.dto.ProductDto;
 import rifqimuhammadaziz.Library.model.Product;
@@ -12,6 +13,8 @@ public interface ProductService {
     Product update(MultipartFile imageProduct, ProductDto productDto);
     void deleteById(Long id);
     void enableById(Long id);
-
     ProductDto findById(Long id);
+
+    Page<Product> pageProducts(int pageNo);
+    Page<Product> searchProducts(int pageNo, String keyword);
 }
