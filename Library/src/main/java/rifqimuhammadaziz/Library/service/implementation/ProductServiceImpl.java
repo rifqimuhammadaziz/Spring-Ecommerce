@@ -26,6 +26,7 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    /* ADMIN */
     @Override
     public List<ProductDto> findAll() {
         List<Product> products = productRepository.findAll();
@@ -164,4 +165,18 @@ public class ProductServiceImpl implements ProductService {
         }
         return productDtoList;
     }
+
+    /* CUSTOMER */
+
+    @Override
+    public List<Product> getAllProducts() {
+        return productRepository.getAllProducts();
+    }
+
+    @Override
+    public List<Product> listViewProducts() {
+        return productRepository.listViewProducts();
+    }
+
+
 }

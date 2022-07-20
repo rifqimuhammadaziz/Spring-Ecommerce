@@ -8,13 +8,17 @@ import rifqimuhammadaziz.Library.model.Product;
 import java.util.List;
 
 public interface ProductService {
+    /* ADMIN */
     List<ProductDto> findAll();
     Product save(MultipartFile imageProduct, ProductDto productDto);
     Product update(MultipartFile imageProduct, ProductDto productDto);
     void deleteById(Long id);
     void enableById(Long id);
     ProductDto findById(Long id);
-
     Page<ProductDto> pageProducts(int pageNo);
     Page<ProductDto> searchProducts(int pageNo, String keyword);
+
+    /* CUSTOMER */
+    List<Product> getAllProducts();
+    List<Product> listViewProducts();
 }
