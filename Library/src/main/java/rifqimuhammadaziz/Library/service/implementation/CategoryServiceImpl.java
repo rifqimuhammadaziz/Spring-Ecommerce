@@ -2,6 +2,7 @@ package rifqimuhammadaziz.Library.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import rifqimuhammadaziz.Library.dto.CategoryDto;
 import rifqimuhammadaziz.Library.model.Category;
 import rifqimuhammadaziz.Library.repository.CategoryRepository;
 import rifqimuhammadaziz.Library.service.contract.CategoryService;
@@ -72,5 +73,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> findAllByActivated() {
         return categoryRepository.findAllByActivated();
+    }
+
+    @Override
+    public List<CategoryDto> getCategoryAndProduct() {
+        return categoryRepository.getCategoryAndProduct();
     }
 }

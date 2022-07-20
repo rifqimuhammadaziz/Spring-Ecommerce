@@ -23,4 +23,6 @@ public interface ProductService {
     List<Product> listViewProducts();
     Product getProductById(Long id);
     List<Product> getRelatedProduct(Long categoryId);
+
+    List<Product> getProductsInCategory(Long categoryId);
 }
