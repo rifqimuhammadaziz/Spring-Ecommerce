@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments::head">
+</head>
+<body>
+
+	<div th:replace="fragments::main-top">
+	</div>
+
+	<header th:replace="fragments::main-header">
+	</header>
+
+	<div th:replace="fragments::top-search">
+	</div>
+
+	<section id="register-form" class="mt-4 mb-4">
+		<div class="container">
+			<div class="form text-center">
+				<h1>Register</h1>
+				<div class="input-form mt-2">
+					<input class="form-control form-control-lg" type="text" placeholder="Name">
+				</div>
+				<div class="input-form mt-2">
+					<input class="form-control form-control-lg" type="text" placeholder="Password">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div th:replace="fragments::instagram-box">
+	</div>
+
+	<footer th:replace="fragments::footer">
+	</footer>
+
+	<div th:replace="fragments::script">
+	</div>
+</body>
+</html>

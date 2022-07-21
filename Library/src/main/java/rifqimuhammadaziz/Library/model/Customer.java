@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,7 +20,11 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
     private Long id;
+
+    @Size(min = 3, max = 15, message = "First Name must be 3-15 characters")
     private String firstName;
+
+    @Size(min = 3, max = 30, message = "Last Name must be 3-30 characters")
     private String lastName;
     private String username;
     private String country;

@@ -42,9 +42,9 @@
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<div class="login-box">
-						<select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-							<option><a href="signup.html">Sign In </a></option>
-							<option><a href="signup.html">Sign Up </a></option>
+						<select id="" class="selectpicker show-tick form-control" data-placeholder="Sign In" onchange="location = this.value;">
+							<option value="http://localhost:8020/shop/login">Sign In</option>
+							<option value="http://localhost:8020/shop/register">Sign Up</option>
 						</select>
 					</div>
 					<div class="text-slid-box">
@@ -165,6 +165,31 @@
 		<!-- End Navigation -->
 	</header>
 	<!-- End Main Top -->
+
+	<div class="product-item-filter row" th:fragment="nav-product">
+		<div class="col-12 col-sm-8 text-center text-sm-left">
+			<div class="toolbar-sorter-right">
+				<span>Sort by </span>
+				<select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD" onchange="location = this.value;">
+					<option data-display="Select">Nothing</option>
+					<option value="http://localhost:8020/shop/high-price">High Price → Low Price</option>
+					<option value="http://localhost:8020/shop/low-price">Low Price → High Price</option>
+					<option data-display="Select">Best Selling</option>
+				</select>
+			</div>
+			<p>Showing all results</p>
+		</div>
+		<div class="col-12 col-sm-4 text-center text-sm-right">
+			<ul class="nav nav-tabs ml-auto">
+				<li>
+					<a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
+				</li>
+				<li>
+					<a class="nav-link" href="#list-view" data-toggle="tab"> <i class="fa fa-list-ul"></i> </a>
+				</li>
+			</ul>
+		</div>
+	</div>
 
 	<!-- Start Top Search -->
 	<div th:fragment="top-search" class="top-search">
