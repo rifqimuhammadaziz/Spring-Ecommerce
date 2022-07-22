@@ -31,6 +31,7 @@ public class HomeController {
             session.setAttribute("username", principal.getName());
         } else {
             session.removeAttribute("username");
+            return "redirect:/login";
         }
         return "home";
     }
