@@ -12,6 +12,8 @@ import rifqimuhammadaziz.Library.model.Product;
 import rifqimuhammadaziz.Library.service.contract.CategoryService;
 import rifqimuhammadaziz.Library.service.contract.ProductService;
 
+import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -24,7 +26,12 @@ public class HomeController {
     private CategoryService categoryService;
 
     @RequestMapping(value = {"/index", "/"}, method = RequestMethod.GET)
-    public String home(Model model) {
+    public String home(Model model, Principal principal, HttpSession session) {
+        if (principal != null) {
+            session.setAttribute("username", principal.getName());
+        } else {
+            session.removeAttribute("username");
+        }
         return "home";
     }
 

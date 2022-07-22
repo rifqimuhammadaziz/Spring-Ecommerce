@@ -17,16 +17,11 @@ public class CustomerDto {
 
     @Size(min = 3, max = 30, message = "Last Name must be 3-30 characters")
     private String lastName;
-    private String username;
-    private String country;
 
-    @Column(name = "phone_number")
-    private String phoneNumber;
-    private String address;
+    private String username;
 
     @Size(min = 5, max = 30, message = "Password must be 5-30 characters")
     private String password;
 
-    @Size(min = 5, max = 30, message = "Password must be 5-30 characters")
-    private String repeatPassword;
+    private String retypePassword;
 }

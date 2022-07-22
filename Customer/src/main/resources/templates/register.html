@@ -17,12 +17,55 @@
 		<div class="container">
 			<div class="form text-center">
 				<h1>Register</h1>
-				<div class="input-form mt-2">
-					<input class="form-control form-control-lg" type="text" placeholder="Name">
+				<div th:if="${error}" class="alert alert-danger text-center">
+					<p th:text="${error}"></p>
 				</div>
-				<div class="input-form mt-2">
-					<input class="form-control form-control-lg" type="text" placeholder="Password">
+				<div th:if="${success}" class="alert alert-success text-center">
+					<p th:text="${success}"></p>
 				</div>
+				<div th:if="${firstName}" class="alert alert-danger text-center">
+					<p th:text="${firstName}"></p>
+				</div>
+				<div th:if="${lastName}" class="alert alert-danger text-center">
+					<p th:text="${lastName}" class="alert alert-danger text-center"></p>
+				</div>
+				<div th:if="${username}">
+					<p th:text="${username}" class="alert alert-danger text-center"></p>
+				</div>
+				<div th:if="${password}" class="alert alert-danger text-center">
+					<p th:text="${password}"></p>
+				</div>
+
+				<form th:action="@{/do-register}" method="POST" th:object="${customerDto}">
+					<div class="mt-2">
+						<label for="firstName">First Name</label>
+						<input id="firstName" class="form-control" type="text" placeholder="First Name" th:field="*{firstName}">
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+					</div>
+					<div class="mt-2">
+						<label for="lastName">Last Name</label>
+						<input id="lastName" class="form-control" type="text" placeholder="Last Name" th:field="*{lastName}">
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+					</div>
+					<div class="mt-2">
+						<label for="email">Email</label>
+						<input id="email" class="form-control" type="text" placeholder="Email" th:field="*{username}">
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+					</div>
+					<div class="mt-2">
+						<label for="password">Password</label>
+						<input id="password" class="form-control" type="password" placeholder="Password" th:field="*{password}">
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+					</div>
+					<div class="mt-2">
+						<label for="retypePassword">Retype Password</label>
+						<input id="retypePassword" class="form-control" type="password" placeholder="Retype Password" th:field="*{retypePassword}">
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('retypePassword')}" th:errors="*{retypePassword}"></div>
+					</div>
+					<div class="mt-2">
+						<button type="submit">Register</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</section>
