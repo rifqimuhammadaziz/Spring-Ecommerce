@@ -38,10 +38,11 @@ public class CartController {
         ShoppingCart shoppingCart = customer.getShoppingCart();
         if (shoppingCart == null) {
             model.addAttribute("check", "No item in your cart");
+        } else {
+            session.setAttribute("totalItems", shoppingCart.getTotalItems());
+            model.addAttribute("subTotal", shoppingCart.getTotalPrices());
+            model.addAttribute("shoppingCart", shoppingCart);
         }
-        session.setAttribute("totalItems", shoppingCart.getTotalItems());
-        model.addAttribute("subTotal", shoppingCart.getTotalPrices());
-        model.addAttribute("shoppingCart", shoppingCart);
         return "cart";
     }
 

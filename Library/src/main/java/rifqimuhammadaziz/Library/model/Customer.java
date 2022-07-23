@@ -38,9 +38,10 @@ public class Customer {
     @Column(name = "image", columnDefinition = "MEDIUMBLOB")
     private String image;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "city_id", referencedColumnName = "city_id")
-    private City city;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "city_id", referencedColumnName = "city_id")
+    @Column(name = "city")
+    private String city;
 
     @OneToOne(mappedBy = "customer")
     private ShoppingCart shoppingCart;

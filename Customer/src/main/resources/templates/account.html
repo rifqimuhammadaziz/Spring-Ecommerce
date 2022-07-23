@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
+<head th:replace="fragments::head">
+</head>
+
+<body>
+
+	<div th:replace="fragments::main-top"></div>
+
+	<header th:replace="fragments::main-header"></header>
+
+	<div th:replace="fragments::top-search"></div>
+	<div th:replace="fragments::slider"></div>
+
+	<div class="container">
+		<div class="form text-center mt-4">
+			<div th:if="${error}" class="alert alert-danger">
+				<p th:text="${error}"></p>
+			</div>
+			<form th:action="@{/update-account}" method="PUT" th:object="${customer}">
+				<img src="" alt="">
+
+				<h2 class="formTitle">
+					<i>Personal Information</i>
+				</h2>
+
+				<div class="mt-2">
+					<label for="fistName">First Name</label>
+					<input id="fistName" class="form-control" type="text" th:field="*{firstName}" readonly>
+				</div>
+
+				<div class="mt-2">
+					<label for="lastName">Last Name</label>
+					<input id="lastName" class="form-control" type="text" th:field="*{lastName}" readonly>
+				</div>
+
+				<div class="mt-2">
+					<label for="username">Username</label>
+					<input id="username" class="form-control" type="text" th:field="*{username}" readonly>
+				</div>
+
+				<div class="mt-2">
+					<label for="phoneNumber">Phone Number</label>
+					<input id="phoneNumber" class="form-control" type="number" th:field="*{phoneNumber}">
+				</div>
+
+				<div class="mt-2">
+					<label for="address">Address</label>
+					<input id="address" class="form-control" type="text" th:field="*{address}">
+				</div>
+
+				<div class="mt-2">
+					<label for="city">City</label>
+					<input id="city" class="form-control" type="text" th:field="*{city}">
+				</div>
+
+				<div class="mt-2">
+					<label for="country">Country</label>
+					<input id="country" class="form-control" type="text" th:field="*{country}">
+				</div>
+
+				<div class="mt-2 mb-2">
+					<button type="submit" class="btn btn-primary">Save</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div th:replace="fragments::footer"></div>
+
+	<div th:replace="fragments::script"></div>
+</body>
+</html>
