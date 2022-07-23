@@ -13,6 +13,7 @@ import rifqimuhammadaziz.Library.service.contract.ProductService;
 import rifqimuhammadaziz.Library.service.contract.ShoppingCartService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 
 @Controller
@@ -28,18 +29,19 @@ public class CartController {
     private ProductService productService;
 
     @GetMapping("/cart")
-    public String cart(Model model, Principal principal) {
+    public String cart(Model model, Principal principal, HttpSession session) {
         if (principal == null) {
             return "redirect:/login";
         }
 
         Customer customer = customerService.findByUsername(principal.getName());
         ShoppingCart shoppingCart = customer.getShoppingCart();
-        model.addAttribute("shoppingCart", shoppingCart);
         if (shoppingCart == null) {
             model.addAttribute("check", "No item in your cart");
         }
-
+        session.setAttribute("totalItems", shoppingCart.getTotalItems());
+        model.addAttribute("subTotal", shoppingCart.getTotalPrices());
+        model.addAttribute("shoppingCart", shoppingCart);
         return "cart";
     }
 
