@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import rifqimuhammadaziz.Library.model.Customer;
+import rifqimuhammadaziz.Library.model.ShoppingCart;
 import rifqimuhammadaziz.Library.service.contract.CustomerService;
 
 import java.security.Principal;
@@ -26,9 +27,11 @@ public class OrderController {
             model.addAttribute("customer", customer);
             model.addAttribute("error", "You must complete the profile before checkout!");
             return "account";
+        } else {
+            model.addAttribute("customer", customer);
+            ShoppingCart cart = customer.getShoppingCart();
+            model.addAttribute("cart", cart);
         }
-
-        // TODO
         return "checkout";
     }
 }
