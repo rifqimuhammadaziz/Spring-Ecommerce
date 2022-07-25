@@ -5,16 +5,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import rifqimuhammadaziz.Library.model.Customer;
+import rifqimuhammadaziz.Library.model.Order;
 import rifqimuhammadaziz.Library.model.ShoppingCart;
 import rifqimuhammadaziz.Library.service.contract.CustomerService;
+import rifqimuhammadaziz.Library.service.contract.OrderService;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class OrderController {
 
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private OrderService orderService;
 
     @GetMapping("/checkout")
     public String checkout(Model model, Principal principal) {
@@ -36,7 +42,27 @@ public class OrderController {
     }
 
     @GetMapping("/order")
-    public String order() {
+    public String order(Principal principal, Model model) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
+
+        Customer customer = customerService.findByUsername(principal.getName());
+        List<Order> orderList = customer.getOrders();
+        model.addAttribute("orders", orderList);
         return "order";
+    }
+
+    @GetMapping("/save-order")
+    public String saveOrder(Principal principal) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
+
+        Customer customer = customerService.findByUsername(principal.getName());
+        ShoppingCart cart = customer.getShoppingCart();
+        orderService.saveOrder(cart);
+
+        return "redirect:/order";
     }
 }
