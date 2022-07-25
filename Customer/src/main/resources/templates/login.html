@@ -13,32 +13,38 @@
 	<div th:replace="fragments::top-search">
 	</div>
 
-	<section id="register-form" class="mt-4 mb-4">
-		<div class="container">
-			<div class="form text-center">
-				<h1>Log In</h1>
-				<div th:if="${param.error}" class="alert alert-danger text-center">
-					<p>Invalid Username or Password</p>
-				</div>
-				<div th:if="${param.logout}" class="alert alert-danger text-center">
-					<p>You have been logged out</p>
-				</div>
+	<section id="register-form">
+		<div class="container d-flex justify-content-center">
+			<div class="card col-6 my-4">
+				<div class="card-body text-center">
+					<h1>Log In</h1>
+					<div th:if="${param.error}" class="alert alert-danger text-center">
+						<p>Invalid Username or Password</p>
+					</div>
+					<div th:if="${param.logout}" class="alert alert-danger text-center">
+						<p>You have been logged out</p>
+					</div>
+					<div th:if="${success}" class="alert alert-success text-center">
+						<p th:text="${success}"></p>
+					</div>
 
-				<form th:action="@{/do-login}" method="POST" th:object="${customerDto}">
-					<div class="mt-2">
-						<label for="email">Email</label>
-						<input id="email" class="form-control" type="text" placeholder="Email" th:field="*{username}">
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
-					</div>
-					<div class="mt-2">
-						<label for="password">Password</label>
-						<input id="password" class="form-control" type="password" placeholder="Password" th:field="*{password}">
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-					</div>
-					<div class="mt-2">
-						<button type="submit">Login</button>
-					</div>
-				</form>
+					<form th:action="@{/do-login}" method="POST" th:object="${customerDto}">
+						<div class="mt-2">
+							<label for="email">Email</label>
+							<input id="email" class="form-control" type="text" placeholder="Email" th:field="*{username}">
+							<div class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+						</div>
+						<div class="mt-2">
+							<label for="password">Password</label>
+							<input id="password" class="form-control" type="password" placeholder="Password" th:field="*{password}">
+							<div class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+						</div>
+						<div class="mt-4">
+							<button type="submit" class="btn btn-primary btn-block">Login</button>
+							<a th:href="@{/register}">Register Here</a>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</section>

@@ -8,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import rifqimuhammadaziz.Library.dto.CustomerDto;
 import rifqimuhammadaziz.Library.model.Customer;
 import rifqimuhammadaziz.Library.service.contract.CustomerService;
@@ -48,18 +47,20 @@ public class AuthController {
 
             Customer customer = customerService.findByUsername(customerDto.getUsername());
             if (customer != null) {
-                model.addAttribute("error", "Username has been registered, please use another username");
+                model.addAttribute("error", "Email has been registered, please use another email");
                 model.addAttribute("customerDto", customerDto);
             } else {
                 if (customerDto.getPassword().equals(customerDto.getRetypePassword())) {
                     customerDto.setPassword(passwordEncoder.encode(customerDto.getPassword()));
                     customerService.save(customerDto);
+                    model.addAttribute("success", "Successfully register, please login to order");
+                    return "login";
                 } else {
                     model.addAttribute("password", "Password is invalid, please check retype password again");
                     model.addAttribute("customerDto", customerDto);
+                    return "register";
                 }
             }
-
         } catch (Exception e) {
             model.addAttribute("error", "Server Error");
             model.addAttribute("customerDto", customerDto);
