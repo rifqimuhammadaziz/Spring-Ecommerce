@@ -26,23 +26,21 @@
                         <div class="title-left">
                             <h3>Billing address</h3>
                         </div>
-                        <form class="needs-validation" novalidate th:object="${customer}">
-                            
                             <div class="mb-3">
-                                <label for="username">Username *</label>
+                                <label for="username">Username</label>
                                 <div class="input-group">
-                                    <p type="text" class="form-control" id="username" placeholder="" th:text="*{username}" required>
+                                    <p type="text" id="username" placeholder="" th:text="${customer.username}" required>
 <!--                                    <div class="invalid-feedback" style="width: 100%;"> Your username is required. </div>-->
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="phone">Phone Number *</label>
-                                <p type="phone" class="form-control" id="phone" placeholder="" th:text="*{phoneNumber}">
+                                <label for="phone">Phone Number</label>
+                                <p type="phone" id="phone" placeholder="" th:text="${customer.phoneNumber}">
 <!--                                <div class="invalid-feedback"> Please enter a valid phone number for shipping updates. </div>-->
                             </div>
                             <div class="mb-3">
-                                <label for="address">Address *</label>
-                                <p type="text" class="form-control" id="address" placeholder="" th:text="${customer.address + ', ' + customer.city + ', ' + customer.country}" required>
+                                <label for="address">Address</label>
+                                <p type="text" id="address" placeholder="" th:text="${customer.address + ', ' + customer.city + ', ' + customer.country}" required>
 <!--                                <div class="invalid-feedback"> Please enter your shipping address. </div>-->
                             </div>
                             
@@ -82,7 +80,7 @@
 <!--                                    <div class="invalid-feedback"> Security code required </div>-->
                                 </div>
                             </div>
-                            <hr class="mb-1"> </form>
+                            <hr class="mb-1">
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-6 mb-3">
@@ -138,7 +136,7 @@
                                 </div>
                                 <hr> </div>
                         </div>
-                        <div class="col-12 d-flex shopping-box"> <a href="#" class="ml-auto btn hvr-hover">Place Order</a> </div>
+                        <div class="col-12 d-flex shopping-box"> <a th:href="@{/order}" class="ml-auto btn hvr-hover">Place Order</a> </div>
                     </div>
                 </div>
             </div>

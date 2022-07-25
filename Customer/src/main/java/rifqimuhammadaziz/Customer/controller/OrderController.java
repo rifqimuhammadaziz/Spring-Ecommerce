@@ -34,4 +34,9 @@ public class OrderController {
         }
         return "checkout";
     }
+
+    @GetMapping("/order")
+    public String order() {
+        return "order";
+    }
 }
